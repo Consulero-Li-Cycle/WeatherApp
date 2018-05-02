@@ -1,0 +1,92 @@
+﻿@model WeatherApp.Models.City
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>City</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Province)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Province)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<button class="btn btn-primary" id="check">Check Weather</button>
+<script>
+    var cityCode = @Model.Code;
+    var ApiKey = "c84fba5cdb8aab25c84ce64b436e9e69"
+    var url = "http://api.openweathermap.org/data/2.5/forecast?id="+ cityCode +"&APPID=" + ApiKey;
+ 
+
+    document.getElementById("check").addEventListener("click", checkWeather);
+
+    var d = "{userInfo:{Id:\"2\", UserName:\"user1\", Description:\"Des\" },classInfo:{Id:\"3\",ClassName:\"class1\", Description:\"Des2\"}}";
+
+    function checkWeather() {
+        $.get(url, function (date) {
+
+            console.log(date.city.name);
+
+
+            $.ajax({
+            url: '@Url.Action("MyData", "Weather")',
+            type: "POST",
+            data: d,
+            contentType: "application/json",
+            success: function (data) {
+                alert(data);
+            },
+            error: function () {
+                alert("false");
+            },
+            complete: function () {
+                alert("complete");
+            }
+        });
+
+
+
+        });
+    }
+
+
+   
+
+</script>
