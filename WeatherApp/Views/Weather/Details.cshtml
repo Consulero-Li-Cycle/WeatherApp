@@ -57,13 +57,13 @@
 
     document.getElementById("check").addEventListener("click", checkWeather);
 
-    var d = "{userInfo:{Id:\"2\", UserName:\"user1\", Description:\"Des\" },classInfo:{Id:\"3\",ClassName:\"class1\", Description:\"Des2\"}}";
+   
 
     function checkWeather() {
         $.get(url, function (date) {
 
             console.log(date.city.name);
-
+            var d = "{userInfo:{Id:\"2\", UserName:\"" + date.city.name+"\", Description:\"Des\" },classInfo:{Id:\"3\",ClassName:\"class1\", Description:\"Des2\"}}";
 
             $.ajax({
             url: '@Url.Action("MyData", "Weather")',

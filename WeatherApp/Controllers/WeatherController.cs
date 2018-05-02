@@ -132,7 +132,7 @@ namespace WeatherApp.Controllers
         [HttpPost]
         public string MyData(UserInfo userInfo, ClassInfo classInfo)
         {
-            return "hello my data" + userInfo.UserName;
+            return "hello my data " + userInfo.UserName;
         }
 
 
